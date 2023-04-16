@@ -21,7 +21,15 @@ const dataCleanser = (data) => {
     const transitFlow = [];
     let count = 0;
     for(let i = 0; i < stepData.length; ++i){
-        transitFlow.push(stepData[i].travel_mode);
+        if(stepData[i].travel_mode === "TRANSIT"){
+            if(stepData[i].transit_details.line.vehicle.type === "BUS"){
+                transitFlow.push("BUS");
+            } else if(stepData[i].transit_details.line.vehicle.type === "SUBWAY"){
+                transitFlow.push("METRO");
+            }
+        }else{
+            transitFlow.push("WALKING");
+        }
         if(stepData[i].travel_mode === "TRANSIT"){
             ++count;
         }
