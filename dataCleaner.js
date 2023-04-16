@@ -44,15 +44,19 @@ const dataCleanser = (data) => {
 
         if(step.travel_mode === "WALKING" && step.distance.value >= 800){
             step_values["suggestRide"] = true;
+            step_values["metroRide"] = false;
             step_values["walkable"] = true;
             step_values["suggestPublicTransport"] = false;
             step_values["duration"] = step.duration;
             step_values["distance"] = step.distance;
             step_values["startLocation"] = step.start_location;
             step_values["finalLocation"] = step.end_location;
+
+            transit_details["type"] = "Walk";
             step_values["transitDetails"] = transit_details;
         } else if(step.travel_mode === "TRANSIT"){
             step_values["suggestRide"] = true;
+            step_values["metroRide"] = step.transit_details.line.vehicle.type === "SUBWAY" ? true : false;
             step_values["walkable"] = false;
             step_values["suggestPublicTransport"] = true;
             step_values["duration"] = step.duration;
@@ -60,20 +64,24 @@ const dataCleanser = (data) => {
             step_values["startLocation"] = step.start_location;
             step_values["finalLocation"] = step.end_location;
             
+            transit_details["type"] = step.transit_details.line.vehicle.type === "SUBWAY" ? "Metro" : "Bus";
             transit_details["arrivalStop"] = step.transit_details.arrival_stop;
             transit_details["departureStop"] = step.transit_details.depature_stop;
             transit_details["arrivalTime"] = step.transit_details.arrival_time;
             transit_details["departureTime"] = step.transit_details.departure_time;
-            transit_details["transitName"] = step.transit_details.line.short_name;
+            transit_details["transitName"] = step.transit_details.line.short_name || step.transit_details.line.name;
             step_values["transitDetails"] = transit_details;
         } else {
             step_values["suggestRide"] = false;
+            step_values["metroRide"] = false;
             step_values["walkable"] = true;
             step_values["suggestPublicTransport"] = false;
             step_values["duration"] = step.duration;
             step_values["distance"] = step.distance;
             step_values["startLocation"] = step.start_location;
             step_values["finalLocation"] = step.end_location;
+            
+            transit_details["type"] = "Walk";
             step_values["transitDetails"] = transit_details;
         }
         response_data.way.push(step_values)
