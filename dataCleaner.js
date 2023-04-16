@@ -66,7 +66,7 @@ const dataCleanser = (data) => {
             
             transit_details["type"] = step.transit_details.line.vehicle.type === "SUBWAY" ? "Metro" : "Bus";
             transit_details["arrivalStop"] = step.transit_details.arrival_stop;
-            transit_details["departureStop"] = step.transit_details.depature_stop;
+            transit_details["departureStop"] = step.transit_details.departure_stop;
             transit_details["arrivalTime"] = step.transit_details.arrival_time;
             transit_details["departureTime"] = step.transit_details.departure_time;
             transit_details["transitName"] = step.transit_details.line.short_name || step.transit_details.line.name;
