@@ -43,6 +43,12 @@ const dataCleanser = (data) => {
         const transit_details = {}
 
         if(step.travel_mode === "WALKING" && step.distance.value >= 800){
+            let count = 0;
+            step.steps.map((st) => {
+                count += st.distance.value;
+            })
+
+
             step_values["suggestRide"] = true;
             step_values["metroRide"] = false;
             step_values["walkable"] = true;
@@ -53,6 +59,7 @@ const dataCleanser = (data) => {
             step_values["finalLocation"] = step.end_location;
 
             transit_details["type"] = "Walk";
+            transit_details["amountOfSteps"] = Math.floor(count/0.76); // taking average of both women & men
             step_values["transitDetails"] = transit_details;
         } else if(step.travel_mode === "TRANSIT"){
             step_values["suggestRide"] = true;
@@ -65,6 +72,7 @@ const dataCleanser = (data) => {
             step_values["finalLocation"] = step.end_location;
             
             transit_details["type"] = step.transit_details.line.vehicle.type === "SUBWAY" ? "Metro" : "Bus";
+            transit_details["stepsData"] = null;
             transit_details["arrivalStop"] = step.transit_details.arrival_stop;
             transit_details["departureStop"] = step.transit_details.departure_stop;
             transit_details["arrivalTime"] = step.transit_details.arrival_time;
@@ -72,6 +80,12 @@ const dataCleanser = (data) => {
             transit_details["transitName"] = step.transit_details.line.short_name || step.transit_details.line.name;
             step_values["transitDetails"] = transit_details;
         } else {
+            let count = 0;
+            step.steps.map((st) => {
+                count += st.distance.value;
+            });
+
+
             step_values["suggestRide"] = false;
             step_values["metroRide"] = false;
             step_values["walkable"] = true;
@@ -82,6 +96,7 @@ const dataCleanser = (data) => {
             step_values["finalLocation"] = step.end_location;
             
             transit_details["type"] = "Walk";
+            transit_details["amountOfSteps"] = Math.floor(count/0.76);
             step_values["transitDetails"] = transit_details;
         }
         response_data.way.push(step_values)
