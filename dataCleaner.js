@@ -1,21 +1,24 @@
 const dataCleanser = (data) => {
     const response_data = {};
+    const description_data = {};
 
     const resData = data.routes[0];
     const routeData = data.routes[0].legs[0];
     const stepData = data.routes[0].legs[0].steps;
 
     if(resData.fare){
-        response_data["fare"] = resData.fare;
+        description_data["fare"] = resData.fare;
     }
 
-    response_data["arrivalTime"] = routeData.arrival_time;
-    response_data["departTime"] = routeData.departure_time;
-    response_data["distance"] = routeData.distance;
-    response_data["duration"] = routeData.duration;
-    response_data["finalLocation"] = routeData.end_location;
-    response_data["finalAddress"] = routeData.end_address;
+    description_data["arrivalTime"] = routeData.arrival_time;
+    description_data["departTime"] = routeData.departure_time;
+    description_data["distance"] = routeData.distance;
+    description_data["duration"] = routeData.duration;
+    description_data["finalLocation"] = routeData.end_location;
+    description_data["finalAddress"] = routeData.end_address;
 
+    response_data["desc"] = description_data;
+    
     response_data["way"] = [];
 
     const transitFlow = [];

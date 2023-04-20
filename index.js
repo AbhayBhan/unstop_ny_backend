@@ -1,6 +1,7 @@
 import express from "express";
 import axios from "axios";
 import cors from "cors";
+// import {data} from "./mockData.js";
 import dataCleanser from "./dataCleaner.js";
 
 const app = express();
