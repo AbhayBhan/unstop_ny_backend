@@ -14,6 +14,8 @@ const dataCleanser = (data) => {
     description_data["departTime"] = routeData.departure_time;
     description_data["distance"] = routeData.distance;
     description_data["duration"] = routeData.duration;
+    description_data["startLocation"] = routeData.start_location;
+    description_data["startAddress"] = routeData.start_address;
     description_data["finalLocation"] = routeData.end_location;
     description_data["finalAddress"] = routeData.end_address;
 
