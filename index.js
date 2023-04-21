@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import mongoose from "mongoose";
 import transitDataCleanser from "./src/dataCleansers/transitDataCleanser.js";
 import driveDataCleanser from "./src/dataCleansers/driveDataCleanser.js";
-import { makeRide } from "./src/controllers/rideController.js";
+import { getRides, makeRide } from "./src/controllers/rideController.js";
 
 const de = dotenv.config();
 const app = express();
@@ -37,6 +37,8 @@ app.post("/driveroute", async (req, res) => {
     res.status(400).send(err);
   }
 });
+
+app.post("/getpool", getRides);
 
 app.post("/postride", makeRide);
 
