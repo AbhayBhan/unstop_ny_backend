@@ -107,6 +107,19 @@ const dataCleanser = (data) => {
         response_data.way.push(step_values)
     })
 
+    let flag = true;
+    response_data.way.map((step) => {
+        if(!step.suggestRide){
+            flag = false;
+        }
+    })
+
+    if(flag){
+        response_data.way.map((step) => {
+            step["suggestRide"] = false;
+        })
+        response_data["suggestFullRide"] = true;
+    }
 
     return response_data;
 }
