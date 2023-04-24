@@ -62,6 +62,7 @@ const dataCleanser = (data) => {
             step_values["distance"] = step.distance;
             step_values["startLocation"] = step.start_location;
             step_values["finalLocation"] = step.end_location;
+            step_values["instruction"] = step.html_instructions;
 
             transit_details["type"] = "Walk";
             transit_details["amountOfSteps"] = Math.floor(count/0.76); // taking average of both women & men
@@ -75,6 +76,7 @@ const dataCleanser = (data) => {
             step_values["distance"] = step.distance;
             step_values["startLocation"] = step.start_location;
             step_values["finalLocation"] = step.end_location;
+            step_values["instruction"] = step.html_instructions;
             
             transit_details["type"] = step.transit_details.line.vehicle.type === "SUBWAY" ? "Metro" : "Bus";
             transit_details["stepsData"] = null;
@@ -99,6 +101,7 @@ const dataCleanser = (data) => {
             step_values["distance"] = step.distance;
             step_values["startLocation"] = step.start_location;
             step_values["finalLocation"] = step.end_location;
+            step_values["instruction"] = step.html_instructions;
             
             transit_details["type"] = "Walk";
             transit_details["amountOfSteps"] = Math.floor(count/0.76);
