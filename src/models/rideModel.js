@@ -1,6 +1,22 @@
 import mongoose from "mongoose";
 
 const rideSchema = new mongoose.Schema({
+    riderName : {
+        type : String,
+        required : true
+    },
+    driverName : {
+        type : String,
+        default : "Ramesh"
+    },
+    gender : {
+        type : String,
+        required : true
+    },
+    distance : {
+        type : Number,
+        required : true
+    },
     sourceLat : {
         type : String,
         required : true
@@ -19,6 +35,10 @@ const rideSchema = new mongoose.Schema({
     },
     startTime : {
         type :  Number,
+        required : true
+    },
+    openToCarPool : {
+        type : Boolean,
         required : true
     }
 });
