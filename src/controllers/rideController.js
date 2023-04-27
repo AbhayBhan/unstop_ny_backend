@@ -52,10 +52,13 @@ export const getRides = asyncHandler(async (req,res) => {
           final_res = response_data[i];
         }
       }
-    
+
+    final_res["proximity"] = nearestDistance;
+
     if(nearestDistance > 3){ // if not in 3km radius, carpool not available
         final_res = {};
     }
+    
 
     res.status(200).send(final_res);
 })
