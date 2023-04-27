@@ -17,6 +17,10 @@ const rideSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
+    duration : {
+        type : Number,
+        required : true
+    },
     sourceLat : {
         type : String,
         required : true
