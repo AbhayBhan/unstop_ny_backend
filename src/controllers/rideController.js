@@ -41,6 +41,11 @@ export const getRides = asyncHandler(async (req,res) => {
         } //second filter to check if the ride has been going for only 5 minutes.
     });
 
+    if(response_data.length === 0){
+        res.status(200).send({});
+        return;
+    }
+
     let nearestRide = response_data[0].sourceLocation;
     let nearestDistance = calculateDistance(sourceLat, sourceLng, nearestRide.lat, nearestRide.lng);
     final_res = response_data[0];
